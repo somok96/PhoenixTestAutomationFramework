@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "login_id": {
+          "type": "string"
+        },
+        "mobile_number": {
+          "type": "string"
+        },
+        "email_id": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "reset_password_date": {
+          "type": "null"
+        },
+        "lock_status": {
+          "type": "integer"
+        },
+        "is_active": {
+          "type": "integer"
+        },
+        "mst_role_id": {
+          "type": "integer"
+        },
+        "mst_service_location_id": {
+          "type": "integer"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "modified_at": {
+          "type": "string"
+        },
+        "role_name": {
+          "type": "string"
+        },
+        "service_location": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "first_name",
+        "last_name",
+        "login_id",
+        "mobile_number",
+        "email_id",
+        "password",
+        "reset_password_date",
+        "lock_status",
+        "is_active",
+        "mst_role_id",
+        "mst_service_location_id",
+        "created_at",
+        "modified_at",
+        "role_name",
+        "service_location"
+      ]
+    }
+  },
+  "required": [
+    "message",
+    "data"
+  ]
+}
