@@ -16,6 +16,14 @@ on:
         options: [qa,uat,dev]
         default: qa
         required: true
+
+      inputs:
+      suiteXmlFile:
+        description: "Suite File"
+        type: choice
+        options: [testng.xml,smole.xml,sanity.xml]
+        default: testng.xml
+        required: true
         
 
 jobs:
