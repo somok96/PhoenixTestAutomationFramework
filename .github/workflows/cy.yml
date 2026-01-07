@@ -24,6 +24,7 @@ jobs:
       run: mvn clean test -DsuiteXmlFile=testng.xml -Denv=qa
 
     - name: Upload a Build Artifact
+      if: always()
       uses: actions/upload-artifact@v6.0.0
       with:
         name: Surefire Reports
