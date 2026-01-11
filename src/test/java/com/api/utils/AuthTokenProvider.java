@@ -9,7 +9,7 @@ import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.equalTo;
 
 import com.api.constants.Role;
-import com.api.pojos.UserCredentials;
+import com.api.request.model.UserCredentials;
 
 public class AuthTokenProvider {
 

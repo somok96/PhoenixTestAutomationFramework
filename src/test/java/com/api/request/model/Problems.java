@@ -1,4 +1,4 @@
-package com.api.pojos;
+package com.api.request.model;
 
 public record Problems(
 

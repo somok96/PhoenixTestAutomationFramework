@@ -9,11 +9,11 @@ import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
 import com.api.constants.Role;
-import com.api.pojos.CreateJobPayload;
-import com.api.pojos.Customer;
-import com.api.pojos.CustomerAddress;
-import com.api.pojos.CustomerProduct;
-import com.api.pojos.Problems;
+import com.api.request.model.CreateJobPayload;
+import com.api.request.model.Customer;
+import com.api.request.model.CustomerAddress;
+import com.api.request.model.CustomerProduct;
+import com.api.request.model.Problems;
 import com.api.utils.SpecUtil;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
