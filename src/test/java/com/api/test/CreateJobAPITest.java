@@ -8,7 +8,14 @@ import java.util.List;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
+import com.api.constants.Model;
+import com.api.constants.OEM;
+import com.api.constants.Platform;
+import com.api.constants.Problem;
+import com.api.constants.Product;
 import com.api.constants.Role;
+import com.api.constants.ServiceLocation;
+import com.api.constants.WarrantyStatus;
 import com.api.request.model.CreateJobPayload;
 import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
@@ -28,11 +35,16 @@ public class CreateJobAPITest {
 		
 		Customer customer = new Customer("Somok","Mukherjee","8240967632","","somok@gmail.com","");
 		CustomerAddress customerAddress = new CustomerAddress("12", "Barisha", "Biren Roy Rd", "BSS", "Behala", 700008, "India", "West Bengal");
-		CustomerProduct customerProduct = new CustomerProduct(DateTimeUtil.getTimeWithDaysAgo(10), "17800110461788", "17800110461788", "17800110461748", DateTimeUtil.getTimeWithDaysAgo(10), 3, 3 );
-		Problems problem = new Problems(1, "battery issue");
+		CustomerProduct customerProduct = new CustomerProduct(DateTimeUtil.getTimeWithDaysAgo(10), "17700110461788", "17700110461788", "17700110461788", DateTimeUtil.getTimeWithDaysAgo(10), 
+				Product.NEXUS_2.getCode(), Model.GALLEXY.getCode());
+		
+		Problems problem = new Problems(Problem.CHARGER_NOT_WORKING.getCode(), "battery issue");
 		List<Problems> problemList = new ArrayList<Problems>();
 		problemList.add(problem);
-		CreateJobPayload createJobPayload = new CreateJobPayload(0,2,1,2,customer,customerAddress, customerProduct, problemList);
+		
+		CreateJobPayload createJobPayload = new CreateJobPayload(ServiceLocation.SERVICE_LOCATION_A.getCode()
+				,Platform.FRONTDESK.getCode(),WarrantyStatus.IN_WARRANTY_STATUS.getCode(),
+				OEM.GOOGLE.getCode(),customer,customerAddress, customerProduct, problemList);
 
 		
 		given()
