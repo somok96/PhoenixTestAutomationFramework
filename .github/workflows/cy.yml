@@ -44,12 +44,12 @@ jobs:
     - name: Default Values for Execution
       id: default
       run: |
-            echo "suiteXmlFile=${{ github.event.inputs.suiteXmlFile || 'testng.xml' }}" >> $GITHUB_OUTPUT
+            echo "suiteXmlFile=${{ github.event.inputs.suiteXmlFile || 'testng.xml'}}" >> $GITHUB_OUTPUT
             echo "env=${{ github.event.inputs.env || 'qa' }}" >> $GITHUB_OUTPUT
 
             
     - name: Execute the Test Automation Framework
-      run: mvn clean test -DsuiteXmlFile="${{ steps.default.output.suiteXmlFile }}" -Denv="${{ steps.default.output.env }}"
+      run: mvn clean test -DsuiteXmlFile="${{ steps.default.outputs.suiteXmlFile }}" -Denv="${{ steps.default.outputs.env }}"
 
     - name: Upload a Build Artifact
       if: always()
