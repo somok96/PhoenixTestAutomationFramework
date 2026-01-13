@@ -3,8 +3,8 @@ package com.api.test;
 import static com.api.constants.Role.FD;
 import static com.api.utils.AuthTokenProvider.getToken;
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.lessThan;
 
 import java.io.IOException;
 
@@ -13,7 +13,6 @@ import org.testng.annotations.Test;
 import com.api.utils.SpecUtil;
 
 import io.restassured.http.Header;
-import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
 public class UserDetailsAPITest {
 	
