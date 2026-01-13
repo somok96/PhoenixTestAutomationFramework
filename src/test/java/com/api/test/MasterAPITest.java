@@ -6,7 +6,6 @@ import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
 import com.api.constants.Role;
-import com.api.utils.AuthTokenProvider;
 import com.api.utils.ConfigManager;
 import com.api.utils.SpecUtil;
 
@@ -14,7 +13,7 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 
 public class MasterAPITest {
 	
-	@Test
+	@Test(description = "Verify if the Master API response is shown correctly", groups= {"api", "smoke", "regression"})
 	public void verifyMasterAPIResponse() {
 		
 			given()
@@ -37,7 +36,7 @@ public class MasterAPITest {
 	}
 	
 	
-	@Test
+	@Test(description = "Verify if the master API response is giving correct status code for invalid token", groups= {"api","negative", "smoke", "regression"})
 	public void invalidTokenMasterAPITest() {
 		
 			given()

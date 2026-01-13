@@ -15,7 +15,7 @@ import io.restassured.http.ContentType;
 
 public class CountAPITest {
 	
-	@Test
+	@Test(description = "Verify if the count API response is shown correctly", groups= {"api", "smoke", "regression"})
 	public void verifyCountAPIResponse() {
 		
 		
@@ -33,7 +33,7 @@ public class CountAPITest {
 				.body(matchesJsonSchemaInClasspath("response-schema/countAPIResponseSchema-FD.json"));
 	}
 
-	@Test
+	@Test(description = "Verify if the count API response is giving correct status code for invalid token", groups= {"api","negative", "smoke", "regression"})
 	public void countAPITest_MissingAuthToken()
 	{
 		given()

@@ -13,11 +13,11 @@ import org.testng.annotations.Test;
 import com.api.utils.SpecUtil;
 
 import io.restassured.http.Header;
-import io.restassured.module.jsv.JsonSchemaValidator;
+import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
 public class UserDetailsAPITest {
 	
-	@Test
+	@Test(description = "Verify if the userDetails API response is shown correctly", groups= {"api", "smoke", "regression"})
 	public void userDetailsAPITest() throws IOException {
 		
 		Header authToken = new Header("Authorization", getToken(FD));
@@ -31,7 +31,7 @@ public class UserDetailsAPITest {
 		.then()
 		.spec(SpecUtil.responseSpec_OK())
 			.body("message", equalTo("Success"))
-			.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("response-schema/userDetailsResponseSchema.json"));
+			.body(matchesJsonSchemaInClasspath("response-schema/userDetailsResponseSchema.json"));
 
 	}
 

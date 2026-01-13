@@ -2,27 +2,31 @@ package com.api.test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.lessThan;
 
 import java.io.IOException;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.api.pojos.UserCredentials;
-import com.api.utils.ConfigManager;
+import com.api.request.model.UserCredentials;
 import com.api.utils.SpecUtil;
 
-import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
 
 public class LoginAPITest {
+	
+	private UserCredentials usercrendentials;
+	
+	
+	@BeforeMethod(description = "Create the Payload for the Login API")
+	public void setup() {
+		usercrendentials = new UserCredentials("iamfd", "password");
+	}
+	
+	
 
-	@Test
+	@Test(description = "Verifying if login API is working for iamfd", groups = {"api", "regression", "smoke"})
 	public void loginAPITest() throws IOException {
-		
-		
-
-		UserCredentials usercrendentials = new UserCredentials("iamfd", "password");
 		
 		given()
 		.spec(SpecUtil.requestSpec(usercrendentials))
