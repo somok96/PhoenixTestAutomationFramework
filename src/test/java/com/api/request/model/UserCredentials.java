@@ -1,6 +1,6 @@
 package com.api.request.model;
 
-//Author is AB
+//Author is ABC
 public record UserCredentials(
 
 		String username, String password
