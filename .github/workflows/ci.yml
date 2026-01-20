@@ -22,7 +22,7 @@ on:
       suiteXmlFile:
         description: "Suite File"
         type: choice
-        options: [testng.xml,smoke.xml,sanity.xml]
+        options: [testng.xml,smoke.xml,sanity.xml,testng-datadriven.xml]
         default: testng.xml
         required: true
         
