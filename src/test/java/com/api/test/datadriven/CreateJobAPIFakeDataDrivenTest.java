@@ -11,12 +11,11 @@ import com.api.utils.SpecUtil;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
 
-public class CreateJobAPIDataDrivenTest {
-
+public class CreateJobAPIFakeDataDrivenTest {
 
 	@Test(description = "Verify if the create job api is able to create inwarranty jobs", groups = { "api",
-			"regression", "datadriven", "csv" }, dataProviderClass = com.dataprovider.DataProviderUtils.class,
-			dataProvider = "CreateJobAPIProvider")
+			"regression",
+			"datadriven", "faker" }, dataProviderClass = com.dataprovider.DataProviderUtils.class, dataProvider = "CreateJobAPIFakerDataProvider")
 	public void createJobAPITest(CreateJobPayload createJobPayload) {
 
 		given().spec(SpecUtil.requestSpecWithAuth(Role.FD, createJobPayload)).log().all().when().post("job/create")

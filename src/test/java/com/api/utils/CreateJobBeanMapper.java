@@ -27,7 +27,7 @@ public class CreateJobBeanMapper {
 				bean.getCustomer__mobile_number(), bean.getCustomer__mobile_number_alt(), bean.getCustomer__email_id(),
 				bean.getCustomer__email_id_alt());
 
-		int customerPinCode = Integer.parseInt(bean.getCustomer_address__pincode());
+		String customerPinCode = bean.getCustomer_address__pincode();
 		CustomerAddress customerAddress = new CustomerAddress(bean.getCustomer_address__flat_number(),
 				bean.getCustomer_address__apartment_name(), bean.getCustomer_address__street_name(),
 				bean.getCustomer_address__landmark(), bean.getCustomer_address__area(), customerPinCode,
