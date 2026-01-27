@@ -8,10 +8,10 @@ public class DemoRunner {
 		
 		long startTime = System.currentTimeMillis();
 
-		DatabaseManager.createConnection();
-		DatabaseManager.createConnection();
-		DatabaseManager.createConnection();
-		DatabaseManager.createConnection();
+		DatabaseManager_OLD.createConnection();
+		DatabaseManager_OLD.createConnection();
+		DatabaseManager_OLD.createConnection();
+		DatabaseManager_OLD.createConnection();
 
 		long endTime = System.currentTimeMillis();
 		
