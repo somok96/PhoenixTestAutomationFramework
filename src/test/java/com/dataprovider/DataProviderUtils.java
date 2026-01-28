@@ -12,6 +12,7 @@ import com.api.utils.CSVReaderUtil;
 import com.api.utils.CreateJobBeanMapper;
 import com.api.utils.FakerDataGenerator;
 import com.api.utils.JsonReaderUtil;
+import com.database.dao.CreateJobPayloadDataDao;
 import com.dataprovider.api.bean.CreateJobBean;
 import com.dataprovider.api.bean.UserBean;
 
@@ -49,7 +50,6 @@ public class DataProviderUtils {
 		return payloadIterator;
 
 	}
-	
 
 	@DataProvider(name = "LoginAPIJsonDataProvider", parallel = true)
 	public static Iterator<UserCredentials> loginAPIJsonDataProvider() {
@@ -63,5 +63,18 @@ public class DataProviderUtils {
 		return JsonReaderUtil.loadJson("testData/CreateJobAPIData.json", CreateJobPayload[].class);
 	}
 
+	@DataProvider(name = "CreateJobAPIDBDataProvider", parallel = true)
+	public static Iterator<CreateJobPayload> createJobAPIDBDataProvider() {
+
+		List<CreateJobBean> beanList = CreateJobPayloadDataDao.getCreateJobPayloadData();
+		List<CreateJobPayload> payloadList = new ArrayList<CreateJobPayload>();
+
+		for (CreateJobBean createJobBean : beanList) {
+			CreateJobPayload payload = CreateJobBeanMapper.mapper(createJobBean);
+			payloadList.add(payload);
+		}
+
+		return payloadList.iterator();
+	}
 
 }
