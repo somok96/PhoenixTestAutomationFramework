@@ -11,7 +11,7 @@ public class DemoDaoRunner {
 
 	public static void main(String[] args) throws SQLException {
 		
-		CustomerDBModel customerDBModel = CustomerDao.getCustomerInfo();
+		CustomerDBModel customerDBModel = CustomerDao.getCustomerInfo(173046);
 		System.out.println(customerDBModel);
 		
 		Customer customer = new Customer("Florian", "Pagac", "8240967632", "", "somok@gmail.com", "");
