@@ -31,8 +31,9 @@ public class CustomerDao {
 				customerDBModel = new CustomerDBModel(resultSet.getString("first_name"),
 						resultSet.getString("last_name"), resultSet.getString("mobile_number"),
 						resultSet.getString("mobile_number_alt"), resultSet.getString("email_id"),
-						resultSet.getString("email_id_alt"));
+						resultSet.getString("email_id_alt"), resultSet.getInt("tr_customer_address_id"));
 			}
+			
 
 		} catch (Exception e) {
 			
