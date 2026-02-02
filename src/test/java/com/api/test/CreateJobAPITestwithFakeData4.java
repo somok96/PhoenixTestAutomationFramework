@@ -2,6 +2,8 @@ package com.api.test;
 
 import static io.restassured.RestAssured.given;
 
+import java.time.LocalDate;
+
 import org.hamcrest.Matchers;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -12,7 +14,6 @@ import com.api.request.model.CreateJobPayload;
 import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
-import com.api.response.model.CreateJobResponseModel;
 import com.api.utils.FakerDataGenerator;
 import com.api.utils.SpecUtil;
 import com.database.dao.CustomerAddressDao;
@@ -23,8 +24,9 @@ import com.database.model.CustomerDBModel;
 import com.database.model.CustomerProductDBModel;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
+import io.restassured.response.Response;
 
-public class CreateJobAPITestwithFakeData3 {
+public class CreateJobAPITestwithFakeData4 {
 
 	CreateJobPayload createJobPayload;
 
@@ -39,17 +41,16 @@ public class CreateJobAPITestwithFakeData3 {
 			"regression", "smoke" })
 	public void createJobAPITest() {
 
-		CreateJobResponseModel createJobresponseModel = given()
-				.spec(SpecUtil.requestSpecWithAuth(Role.FD, createJobPayload)).log().all().when().post("job/create")
-				.then().spec(SpecUtil.responseSpec_OK())
+		Response response = given().spec(SpecUtil.requestSpecWithAuth(Role.FD, createJobPayload)).log().all().when()
+				.post("job/create").then().spec(SpecUtil.responseSpec_OK())
 				.body(JsonSchemaValidator
 						.matchesJsonSchemaInClasspath("response-schema/CreateJobAPIResponseSchema.json"))
 				.body("message", Matchers.equalTo("Job created successfully. "))
 				.body("data.mst_service_location_id", Matchers.equalTo(1))
-				.body("data.job_number", Matchers.startsWith("JOB_")).extract().as(CreateJobResponseModel.class);
+				.body("data.job_number", Matchers.startsWith("JOB_")).extract().response();
 
-		int customerID = createJobresponseModel.getData().getTr_customer_id();
-		int productID = createJobresponseModel.getData().getTr_customer_product_id();
+		int customerID = response.then().extract().body().jsonPath().getInt("data.tr_customer_id");
+		int productID = response.then().extract().body().jsonPath().getInt("data.tr_customer_product_id");
 
 		Customer customerExpectedData = createJobPayload.customer();
 		CustomerAddress customerExpectedAddressData = createJobPayload.customer_address();
