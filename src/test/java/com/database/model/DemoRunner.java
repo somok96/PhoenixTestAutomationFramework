@@ -11,6 +11,11 @@ public class DemoRunner {
 //				"DominoesPizza", "Barisha", "700008", "India", "West Bengal");
 //		System.out.println(address);
 		
+		
+		CustomerProductDBModel product = new CustomerProductDBModel(1,2,3, "2025-10-01", "2025-10-01T18:30:00.000Z", "13033535175409", "13033535175409", "13033535175409");
+		System.out.println(product);
+	
+	
 	}
 	
 	
