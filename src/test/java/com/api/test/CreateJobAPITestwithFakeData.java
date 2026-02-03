@@ -28,7 +28,7 @@ public class CreateJobAPITestwithFakeData {
 
 	}
 
-	@Test(description = "Verify if the create job api is able to create inwarranty jobs", groups = { "api",
+	@Test(description = "Verify if the create job api is able to create inwarranty jobs with database validation for customer personal information", groups = { "api",
 			"regression", "smoke" })
 	public void createJobAPITest() {
 
