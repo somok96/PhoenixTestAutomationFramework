@@ -13,6 +13,10 @@
 			<class
 				name="com.api.test.datadriven.CreateJobAPIJSONDataDrivenTest" />
 			<class
+				name="com.api.test.datadriven.LoginAPIExcelDataDrivenTest" />
+			<class
+				name="com.api.test.datadriven.CreateJobAPIExcelDataDrivenTest" />
+			<class
 				name="com.api.test.datadriven.CreateJobAPIDBDataDrivenTest" />
 		</classes>
 
