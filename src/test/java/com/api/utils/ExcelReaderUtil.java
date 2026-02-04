@@ -2,15 +2,15 @@ package com.api.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.api.request.model.UserCredentials;
+import com.dataprovider.api.bean.UserBean;
+import com.poiji.bind.Poiji;
 
 public class ExcelReaderUtil {
 
@@ -18,7 +18,7 @@ public class ExcelReaderUtil {
 
 	}
 
-	public static Iterator<UserCredentials> loadTestData(String path){
+	public static <T> Iterator<T> loadTestData(String path, String sheetName, Class<T> clazz){
 
 		InputStream is = Thread.currentThread().getContextClassLoader()
 				.getResourceAsStream(path);
@@ -29,36 +29,11 @@ public class ExcelReaderUtil {
 			
 			e.printStackTrace();
 		}
-		XSSFSheet sheet = workbook.getSheet("LoginTestData");
+		XSSFSheet sheet = workbook.getSheet(sheetName);
 
-		XSSFRow headerRows = sheet.getRow(0);
-		int userNameIndex = -1;
-		int passwordIndex = -1;
-
-		for (Cell cell : headerRows) {
-			if (cell.getStringCellValue().trim().equalsIgnoreCase("username")) {
-				userNameIndex = cell.getColumnIndex();
-			}
-
-			if (cell.getStringCellValue().trim().equalsIgnoreCase("password")) {
-				passwordIndex = cell.getColumnIndex();
-			}
-		}
-
-		int lastRowIndex = sheet.getLastRowNum();
-		UserCredentials userCredentials = null;
-		XSSFRow rowData;
-		ArrayList<UserCredentials> userList = new ArrayList<UserCredentials>();
-
-		for (int rowIndex = 1; rowIndex <= lastRowIndex; rowIndex++) {
-
-			rowData = sheet.getRow(rowIndex);
-			userCredentials = new UserCredentials(rowData.getCell(userNameIndex).toString(),
-					rowData.getCell(passwordIndex).toString());
-			userList.add(userCredentials);
-		}
-
-		return userList.iterator();
+		List<T> dataList = Poiji.fromExcel(sheet, clazz);	
+		
+		return dataList.iterator();
 	}
 
 }
