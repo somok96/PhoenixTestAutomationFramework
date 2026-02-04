@@ -1,87 +1,115 @@
 package com.dataprovider.api.bean;
 
 import com.opencsv.bean.CsvBindByName;
+import com.poiji.annotation.ExcelCellName;
 
 public class CreateJobBean {
 	
+	@ExcelCellName("mst_service_location_id")
 	@CsvBindByName(column = "mst_service_location_id")
 	private String mst_service_location_id;
 	
+	@ExcelCellName("mst_platform_id")
 	@CsvBindByName(column = "mst_platform_id")
 	private String mst_platform_id;
 	
+	@ExcelCellName("mst_warrenty_status_id")
 	@CsvBindByName(column = "mst_warrenty_status_id")
 	private String mst_warrenty_status_id;
 	
+	@ExcelCellName("mst_oem_id")
 	@CsvBindByName(column = "mst_oem_id")
 	private String mst_oem_id;
 	
+	@ExcelCellName("customer__first_name")
 	@CsvBindByName(column = "customer__first_name")
 	private String customer__first_name;
 	
+	@ExcelCellName("customer__last_name")
 	@CsvBindByName(column = "customer__last_name")
 	private String customer__last_name;
 	
+	@ExcelCellName("customer__mobile_number")
 	@CsvBindByName(column = "customer__mobile_number")
 	private String customer__mobile_number;
 	
+	@ExcelCellName("customer__mobile_number_alt")
 	@CsvBindByName(column = "customer__mobile_number_alt")
 	private String customer__mobile_number_alt;
 	
+	@ExcelCellName("customer__email_id")
 	@CsvBindByName(column = "customer__email_id")
 	private String customer__email_id;
 	
+	@ExcelCellName("customer__email_id_alt")
 	@CsvBindByName(column = "customer__email_id_alt")
 	private String customer__email_id_alt;
 	
+	@ExcelCellName("customer_address__flat_number")
 	@CsvBindByName(column = "customer_address__flat_number")
 	private String customer_address__flat_number;
 	
+	@ExcelCellName("customer_address__apartment_name")
 	@CsvBindByName(column = "customer_address__apartment_name")
 	private String customer_address__apartment_name;
 	
+	@ExcelCellName("customer_address__street_name")
 	@CsvBindByName(column = "customer_address__street_name")
 	private String customer_address__street_name;
 	
+	@ExcelCellName("customer_address__landmark")
 	@CsvBindByName(column = "customer_address__landmark")
 	private String customer_address__landmark;
 	
+	@ExcelCellName("customer_address__area")
 	@CsvBindByName(column = "customer_address__area")
 	private String customer_address__area;
 	
+	@ExcelCellName("customer_address__pincode")
 	@CsvBindByName(column = "customer_address__pincode")
 	private String customer_address__pincode;
 	
+	@ExcelCellName("customer_address__country")
 	@CsvBindByName(column = "customer_address__country")
 	private String customer_address__country;
 	
+	@ExcelCellName("customer_address__state")
 	@CsvBindByName(column = "customer_address__state")
 	private String customer_address__state;
 	
+	@ExcelCellName("customer_product__dop")
 	@CsvBindByName(column = "customer_product__dop")
 	private String customer_product__dop;
 	
+	@ExcelCellName("customer_product__serial_number")
 	@CsvBindByName(column = "customer_product__serial_number")
 	private String customer_product__serial_number;
 	
+	@ExcelCellName("customer_product__imei1")
 	@CsvBindByName(column = "customer_product__imei1")
 	private String customer_product__imei1;
 	
+	@ExcelCellName("customer_product__imei2")
 	@CsvBindByName(column = "customer_product__imei2")
 	private String customer_product__imei2;
 	
+	@ExcelCellName("customer_product__popurl")
 	@CsvBindByName(column = "customer_product__popurl")
 	private String customer_product__popurl;
 	
+	@ExcelCellName("customer_product__product_id")
 	@CsvBindByName(column = "customer_product__product_id")
 	private String customer_product__product_id;
 	
+	@ExcelCellName("customer_product__mst_model_id")
 	@CsvBindByName(column = "customer_product__mst_model_id")
 	private String customer_product__mst_model_id;
 	
+	@ExcelCellName("problems__id")
 	@CsvBindByName(column = "problems__id")
 	private String problems__id;
 	
+	@ExcelCellName("problems__remark")
 	@CsvBindByName(column = "problems__remark")
 	private String problems__remark;
 	
