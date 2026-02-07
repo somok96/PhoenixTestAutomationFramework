@@ -5,14 +5,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import com.api.utils.ConfigManager;
+import com.api.utils.EnvUtil;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 public class DatabaseManager {
 
-	private static final String DB_URL = ConfigManager.getProperty("DB_URL");
-	private static final String DB_USERNAME = ConfigManager.getProperty("DB_USERNAME");
-	private static final String DB_PASSWORD = ConfigManager.getProperty("DB_PASSWORD");
+	private static final String DB_URL = EnvUtil.getValue("DB_URL");
+	private static final String DB_USERNAME = EnvUtil.getValue("DB_USERNAME");
+	private static final String DB_PASSWORD = EnvUtil.getValue("DB_PASSWORD");
 	private static final int MAXIMUM_POOL_SIZE = Integer.parseInt(ConfigManager.getProperty("MAXIMUM_POOL_SIZE"));
 	private static final int MINIMUM_IDLE_COUNT = Integer.parseInt(ConfigManager.getProperty("MINIMUM_IDLE_COUNT"));
 	private static final int CONNECTION_TIMEOUT_IN_SECS = Integer
@@ -38,9 +39,9 @@ public class DatabaseManager {
 				if (hikariDataSource == null) {
 
 					hikariConfig = new HikariConfig();
-					hikariConfig.setJdbcUrl(ConfigManager.getProperty("DB_URL"));
-					hikariConfig.setUsername(ConfigManager.getProperty("DB_USERNAME"));
-					hikariConfig.setPassword(ConfigManager.getProperty("DB_PASSWORD"));
+					hikariConfig.setJdbcUrl(DB_URL);
+					hikariConfig.setUsername(DB_USERNAME);
+					hikariConfig.setPassword(DB_PASSWORD);
 					hikariConfig.setMaximumPoolSize(MAXIMUM_POOL_SIZE);
 					hikariConfig.setMinimumIdle(MINIMUM_IDLE_COUNT);
 					hikariConfig.setConnectionTimeout(CONNECTION_TIMEOUT_IN_SECS * 1000);

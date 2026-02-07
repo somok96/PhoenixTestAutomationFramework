@@ -1,17 +1,16 @@
 package com.database;
 
+import com.api.utils.EnvUtil;
+
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class EnvRunner {
 
 	public static void main(String[] args) {
 
-		Dotenv dotEnv = Dotenv.load();
-		String url = dotEnv.get("DB_URL");
-		System.out.println(url);
-		
-		
-		
+		System.out.println(EnvUtil.getValue("DB_URL"));
+		System.out.println(EnvUtil.getValue("DB_USERNAME"));
+		System.out.println(EnvUtil.getValue("DB_PASSWORD"));
 		
 		
 	}
