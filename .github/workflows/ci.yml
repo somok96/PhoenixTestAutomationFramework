@@ -41,6 +41,12 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
+    - name: Creating the .env file
+      run: |
+            echo "DB_URL=${{ secrets.DB_URL }}" >> .env
+            echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
+            echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+
     - name: Default Values for Execution
       id: default
       run: |
