@@ -49,8 +49,8 @@ public class CreateJobAPIwithDBValidationTest {
 		customer = new Customer("Somok", "Mukherjee", "8240967632", "", "somok@gmail.com", "");
 		CustomerAddress customerAddress = new CustomerAddress("12", "Barisha", "Biren Roy Rd", "BSS", "Behala",
 				"700008", "India", "West Bengal");
-		CustomerProduct customerProduct = new CustomerProduct(DateTimeUtil.getTimeWithDaysAgo(10), "27700110461009",
-				"27700110461009", "27700110461009", DateTimeUtil.getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(),
+		CustomerProduct customerProduct = new CustomerProduct(DateTimeUtil.getTimeWithDaysAgo(10), "27700110461110",
+				"27700110461110", "27700110461110", DateTimeUtil.getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(),
 				Model.GALLEXY.getCode());
 
 		Problems problem = new Problems(Problem.CHARGER_NOT_WORKING.getCode(), "battery issue");
