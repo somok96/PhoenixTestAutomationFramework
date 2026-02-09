@@ -1,7 +1,5 @@
 package com.api.test;
 
-import static io.restassured.RestAssured.given;
-
 import org.hamcrest.Matchers;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -10,6 +8,7 @@ import org.testng.annotations.Test;
 import com.api.constants.Role;
 import com.api.request.model.CreateJobPayload;
 import com.api.request.model.Customer;
+import com.api.services.JobService;
 import com.api.utils.FakerDataGenerator;
 import com.api.utils.SpecUtil;
 import com.database.dao.CustomerDao;
@@ -19,21 +18,22 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 
 public class CreateJobAPITestwithFakeData {
 
-	CreateJobPayload createJobPayload;
+	private CreateJobPayload createJobPayload;
+	private JobService jobService;
 
 	@BeforeMethod(description = "Creating the create job api payload")
 	public void setup() {
 
 		createJobPayload = FakerDataGenerator.generateFakeCreateJobData();
+		jobService = new JobService();
 
 	}
 
-	@Test(description = "Verify if the create job api is able to create inwarranty jobs with database validation for customer personal information", groups = { "api",
-			"regression", "smoke" })
+	@Test(description = "Verify if the create job api is able to create inwarranty jobs with database validation for customer personal information", groups = {
+			"api", "regression", "smoke" })
 	public void createJobAPITest() {
 
-		int customerID = given().spec(SpecUtil.requestSpecWithAuth(Role.FD, createJobPayload)).log().all().when()
-				.post("job/create").then().spec(SpecUtil.responseSpec_OK())
+		int customerID = jobService.create(Role.FD, createJobPayload).then().spec(SpecUtil.responseSpec_OK())
 				.body(JsonSchemaValidator
 						.matchesJsonSchemaInClasspath("response-schema/CreateJobAPIResponseSchema.json"))
 				.body("message", Matchers.equalTo("Job created successfully. "))
@@ -62,7 +62,6 @@ public class CreateJobAPITestwithFakeData {
 		Assert.assertEquals(customerExpectedData.email_id_alt(), customerDatafromDB.getEmail_id_alt());
 		System.out.println("✅ DB VALIDATION SUCCESSFUL");
 
-	
 	}
 
 }
