@@ -24,6 +24,7 @@ import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
 import com.api.response.model.CreateJobResponseModel;
+import com.api.services.JobService;
 import com.api.utils.DateTimeUtil;
 import com.api.utils.SpecUtil;
 import com.database.dao.CustomerAddressDao;
@@ -43,14 +44,15 @@ public class CreateJobAPIwithDBValidationTest {
 
 	private CreateJobPayload createJobPayload;
 	private Customer customer;
-
+	private JobService jobService; 
+	
 	@BeforeMethod(description = "Creating the create job api payload")
 	public void setup() {
 		customer = new Customer("Somok", "Mukherjee", "8240967632", "", "somok@gmail.com", "");
 		CustomerAddress customerAddress = new CustomerAddress("12", "Barisha", "Biren Roy Rd", "BSS", "Behala",
 				"700008", "India", "West Bengal");
-		CustomerProduct customerProduct = new CustomerProduct(DateTimeUtil.getTimeWithDaysAgo(10), "27700110461110",
-				"27700110461110", "27700110461110", DateTimeUtil.getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(),
+		CustomerProduct customerProduct = new CustomerProduct(DateTimeUtil.getTimeWithDaysAgo(10), "27700110461111",
+				"27700110461111", "27700110461111", DateTimeUtil.getTimeWithDaysAgo(10), Product.NEXUS_2.getCode(),
 				Model.GALLEXY.getCode());
 
 		Problems problem = new Problems(Problem.CHARGER_NOT_WORKING.getCode(), "battery issue");
@@ -61,14 +63,15 @@ public class CreateJobAPIwithDBValidationTest {
 				Platform.FRONTDESK.getCode(), WarrantyStatus.IN_WARRANTY_STATUS.getCode(), OEM.GOOGLE.getCode(),
 				customer, customerAddress, customerProduct, problemList);
 		
+		jobService = new JobService();
+		
 	}
 
 	@Test(description = "Verify if the create job api is able to create inwarranty jobs", groups = { "api",
 			"regression", "smoke" })
 	public void createJobAPITest() {
 
-		CreateJobResponseModel createJobResponseModel = given()
-				.spec(SpecUtil.requestSpecWithAuth(Role.FD, createJobPayload)).log().all().when().post("job/create")
+		CreateJobResponseModel createJobResponseModel = jobService.create(Role.FD, createJobPayload)
 				.then().spec(SpecUtil.responseSpec_OK())
 				.body(JsonSchemaValidator
 						.matchesJsonSchemaInClasspath("response-schema/CreateJobAPIResponseSchema.json"))
