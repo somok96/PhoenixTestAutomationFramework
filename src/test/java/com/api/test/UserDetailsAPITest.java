@@ -1,36 +1,33 @@
 package com.api.test;
 
-import static com.api.constants.Role.FD;
-import static com.api.utils.AuthTokenProvider.getToken;
-import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 
 import java.io.IOException;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static com.api.constants.Role.*;
+import com.api.services.UserService;
 import com.api.utils.SpecUtil;
 
-import io.restassured.http.Header;
-
 public class UserDetailsAPITest {
-	
-	@Test(description = "Verify if the userDetails API response is shown correctly", groups= {"api", "smoke", "regression"})
+
+	UserService userService;
+
+	@BeforeMethod(description = "Initializing the UserDetails Service")
+	public void setup() {
+		userService = new UserService();
+
+	}
+
+	@Test(description = "Verify if the userDetails API response is shown correctly", groups = { "api", "smoke",
+			"regression" })
 	public void userDetailsAPITest() throws IOException {
-		
-		Header authToken = new Header("Authorization", getToken(FD));
-	
-		
-		
-		given()
-		.spec(SpecUtil.requestSpecWithAuth(FD))
-		.when()
-			.get("userdetails")
-		.then()
-		.spec(SpecUtil.responseSpec_OK())
-			.body("message", equalTo("Success"))
-			.body(matchesJsonSchemaInClasspath("response-schema/userDetailsResponseSchema.json"));
+
+		userService.userdetails(FD).then().spec(SpecUtil.responseSpec_OK()).body("message", equalTo("Success"))
+				.body(matchesJsonSchemaInClasspath("response-schema/userDetailsResponseSchema.json"));
 
 	}
 
