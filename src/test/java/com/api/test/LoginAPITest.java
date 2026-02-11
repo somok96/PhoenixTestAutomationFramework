@@ -15,19 +15,19 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 
 public class LoginAPITest {
 
-	private UserCredentials usercrendentials;
+	private UserCredentials usercredentials;
 	private AuthService authService;
 
 	@BeforeMethod(description = "Create the Payload for the Login API")
 	public void setup() {
-		usercrendentials = new UserCredentials("iamfd", "password");
+		usercredentials = new UserCredentials("iamfd", "password");
 		authService = new AuthService();
 	}
 
 	@Test(description = "Verifying if login API is working for iamfd", groups = { "api", "regression", "smoke" })
 	public void loginAPITest() throws IOException {
 
-		authService.login(usercrendentials).then().spec(SpecUtil.responseSpec_OK()).body("message", equalTo("Success"))
+		authService.login(usercredentials).then().spec(SpecUtil.responseSpec_OK()).body("message", equalTo("Success"))
 				.and()
 				.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("response-schema/loginResponseSchema.json"));
 

@@ -3,6 +3,9 @@ package com.api.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.api.request.model.CreateJobPayload;
 import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
@@ -12,11 +15,14 @@ import com.dataprovider.api.bean.CreateJobBean;
 
 public class CreateJobBeanMapper {
 
+	private static final Logger LOGGER = LogManager.getLogger(CreateJobBeanMapper.class);
 	private CreateJobBeanMapper() {
 
 	}
 
 	public static CreateJobPayload mapper(CreateJobBean bean) {
+		
+		LOGGER.info("Converting the Create Job Bean {} to Create Job Payload...", bean);
 
 		int mstServiceLocationId = Integer.parseInt(bean.getMst_service_location_id());
 		int mstPlatformId = Integer.parseInt(bean.getMst_platform_id());
@@ -48,6 +54,7 @@ public class CreateJobBeanMapper {
 		CreateJobPayload payload = new CreateJobPayload(mstServiceLocationId, mstPlatformId, mstWarrentyStatusId,
 				mstOemId, customer, customerAddress, customerProduct, problemList);
 		
+		LOGGER.info("Converting the Bean to Create Job Payload {}", payload);
 		return payload;
 
 	}

@@ -1,14 +1,12 @@
 package com.api.test;
 
-import static io.restassured.RestAssured.given;
+import static com.api.constants.Role.FD;
 
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static com.api.constants.Role.*;
 import com.api.services.MasterService;
-import com.api.utils.ConfigManager;
 import com.api.utils.SpecUtil;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
