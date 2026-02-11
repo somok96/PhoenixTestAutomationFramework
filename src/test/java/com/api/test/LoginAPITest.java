@@ -10,17 +10,18 @@ import org.testng.annotations.Test;
 import com.api.request.model.UserCredentials;
 import com.api.services.AuthService;
 import com.api.utils.SpecUtil;
+import com.dataprovider.api.bean.UserBean;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
 
 public class LoginAPITest {
 
-	private UserCredentials usercredentials;
+	private UserBean usercredentials;
 	private AuthService authService;
 
 	@BeforeMethod(description = "Create the Payload for the Login API")
 	public void setup() {
-		usercredentials = new UserCredentials("iamfd", "password");
+		usercredentials = new UserBean("iamfd", "password");
 		authService = new AuthService();
 	}
 

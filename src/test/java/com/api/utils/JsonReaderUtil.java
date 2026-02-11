@@ -29,7 +29,7 @@ public class JsonReaderUtil {
 		List<T> list = null;
 
 		try {
-			LOGGER.info("Converting the JSON Data to the Bean class {}", clazz);
+			LOGGER.info("Converting the JSON Data to the Bean {}", clazz);
 			classArray = objectmapper.readValue(is, clazz);
 			list = Arrays.asList(classArray);
 		} catch (IOException e) {

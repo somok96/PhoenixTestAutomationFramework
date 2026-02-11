@@ -1,8 +1,10 @@
 package com.database;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.api.utils.ConfigManager;
 import com.api.utils.EnvUtil;
@@ -10,6 +12,8 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 public class DatabaseManager {
+
+	private static final Logger LOGGER = LogManager.getLogger(DatabaseManager.class);
 
 	private static final String DB_URL = EnvUtil.getValue("DB_URL");
 	private static final String DB_USERNAME = EnvUtil.getValue("DB_USERNAME");
@@ -25,7 +29,6 @@ public class DatabaseManager {
 
 	private static HikariConfig hikariConfig;
 	private volatile static HikariDataSource hikariDataSource;
-
 	private volatile static Connection conn;
 
 	private DatabaseManager() {
@@ -35,6 +38,7 @@ public class DatabaseManager {
 	public static void initializePool() {
 
 		if (hikariDataSource == null) {
+			LOGGER.warn("Database Connection is not available.... Creating HikariDataSource");
 			synchronized (DatabaseManager.class) {
 				if (hikariDataSource == null) {
 
@@ -50,6 +54,7 @@ public class DatabaseManager {
 					hikariConfig.setPoolName(HIKARI_CP_POOL_NAME);
 
 					hikariDataSource = new HikariDataSource(hikariConfig);
+					LOGGER.warn("Hikari Datasource Created!!!");
 
 				}
 			}
@@ -60,8 +65,10 @@ public class DatabaseManager {
 	public static Connection getConnection() throws SQLException {
 
 		if (hikariDataSource == null) {
+			LOGGER.info("Initializing the Database Connection using HikariCP");
 			initializePool();
 		} else if (hikariDataSource.isClosed()) {
+			LOGGER.error("HIKARICP DB IS CLOSED!");
 			throw new SQLException("HIKARICP DB IS CLOSED!");
 		}
 

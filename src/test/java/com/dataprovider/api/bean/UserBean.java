@@ -6,11 +6,16 @@ public class UserBean {
 
 	@ExcelCellName("username")
 	private String username;
-	
+
 	@ExcelCellName("password")
 	private String password;
 
 	public UserBean() {
+	}
+
+	public UserBean(String username, String password) {
+		this.username = username;
+		this.password = password;
 	}
 
 	public String getUsername() {
