@@ -11,7 +11,7 @@ import com.api.utils.SpecUtil;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
 
-public class CreateJobAPIDataDrivenTest {
+public class CreateJobAPICSVDataDrivenTest {
 
 	private JobService jobService;
 
