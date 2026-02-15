@@ -29,7 +29,7 @@ public class SpecUtil {
 
 		RequestSpecification requestSpecification = new RequestSpecBuilder()
 				.setBaseUri(ConfigManager.getProperty("BASE_URI")).setContentType(ContentType.JSON)
-				.setAccept(ContentType.JSON).setBody(payload).addFilter(new SensitiveDataFilter()).log(LogDetail.URI).log(LogDetail.BODY)
+				.setAccept(ContentType.JSON).setBody(payload).addFilter(new SensitiveDataFilter()).log(LogDetail.URI)
 				.log(LogDetail.METHOD).log(LogDetail.HEADERS).build();
 
 		return requestSpecification;
@@ -60,7 +60,7 @@ public class SpecUtil {
 	
 	
 	public static ResponseSpecification responseSpec_OK() {
-		ResponseSpecification responseSpecification = new ResponseSpecBuilder().expectStatusCode(200).log(LogDetail.ALL)
+		ResponseSpecification responseSpecification = new ResponseSpecBuilder().expectStatusCode(200)
 				.expectResponseTime(Matchers.lessThan(1000L)).build();
 
 		return responseSpecification;
@@ -68,7 +68,7 @@ public class SpecUtil {
 	
 	
 	public static ResponseSpecification responseSpec_JSON(int responseCode) {
-		ResponseSpecification responseSpecification = new ResponseSpecBuilder().expectStatusCode(responseCode).log(LogDetail.ALL)
+		ResponseSpecification responseSpecification = new ResponseSpecBuilder().expectStatusCode(responseCode)
 				.expectResponseTime(Matchers.lessThan(1000L)).build();
 
 		return responseSpecification;
