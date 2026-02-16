@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.given;
 
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.constants.Role;
@@ -12,7 +13,7 @@ import com.api.services.JobService;
 import com.api.utils.SpecUtil;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
-
+@Listeners(com.listeners.APITestListener.class)
 public class CreateJobAPIExcelDataDrivenTest {
 
 	private JobService jobService;
