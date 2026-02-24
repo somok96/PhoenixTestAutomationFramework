@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import com.api.utils.SpecUtil;
 import com.dataprovider.api.bean.UserBean;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 public class AuthService {
@@ -15,7 +16,8 @@ public class AuthService {
 	private static final String LOGIN_ENDPOINT = "/login";
 	private static final Logger LOGGER = LogManager.getLogger(AuthService.class);
 
-	public static Response login(Object usercredentials) {
+	@Step("Perform login request with the userCredentials")
+	public Response login(Object usercredentials) {
 		LOGGER.info("Making login request for the payload {}", ((UserBean)usercredentials).getUsername());
 		Response response = given().spec(SpecUtil.requestSpec(usercredentials)).when().post(LOGIN_ENDPOINT);
 		return response;

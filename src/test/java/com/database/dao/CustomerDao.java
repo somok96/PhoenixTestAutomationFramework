@@ -3,13 +3,14 @@ package com.database.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.database.DatabaseManager;
 import com.database.model.CustomerDBModel;
+
+import io.qameta.allure.Step;
 
 public class CustomerDao {
 
@@ -20,6 +21,7 @@ public class CustomerDao {
 
 			""";
 
+	@Step("Getting Customer Info information from Database for a specific customer ID")
 	public static CustomerDBModel getCustomerInfo(int customerId) {
 		Connection conn;
 		PreparedStatement preparedStatement;
