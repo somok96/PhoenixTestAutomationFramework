@@ -9,6 +9,15 @@ import com.api.request.model.DetailsPayload;
 import com.api.services.DashboardService;
 import com.api.utils.SpecUtil;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+
+@Epic("Job Management")
+@Feature("Job Details")
 public class DetailsAPITest {
 	
 	private DashboardService dashboardService;
@@ -21,6 +30,9 @@ public class DetailsAPITest {
 		dashboardService = new DashboardService();
 	}
 	
+	@Story("Job Details is shown correctly for FD")
+	@Description("Verify if Details API is working correctly")
+	@Severity(SeverityLevel.CRITICAL)
 	@Test(description = "Verify if the details API is able to show all the JOBS created", groups = {"smoke", "sanity"})
 	public void showDetailsAPITest() {
 		dashboardService.details(Role.FD, payload)

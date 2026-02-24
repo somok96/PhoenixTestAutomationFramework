@@ -10,9 +10,9 @@ import org.apache.logging.log4j.Logger;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.api.request.model.UserCredentials;
-import com.dataprovider.api.bean.UserBean;
 import com.poiji.bind.Poiji;
+
+import io.qameta.allure.Step;
 
 public class ExcelReaderUtil {
 	
@@ -22,6 +22,7 @@ public class ExcelReaderUtil {
 
 	}
 
+	@Step("Loading the test data from the Excel File")
 	public static <T> Iterator<T> loadTestData(String xlsxFile, String sheetName, Class<T> clazz){
 		
 		LOGGER.info("Reading the test data from .xlsx file {} and the sheet name is {}", xlsxFile,sheetName);

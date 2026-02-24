@@ -17,6 +17,8 @@ import org.apache.logging.log4j.Logger;
 import com.api.constants.Role;
 import com.api.request.model.UserCredentials;
 
+import io.qameta.allure.Step;
+
 public class AuthTokenProvider {
 
 	private static Map<Role, String> tokenCache = new ConcurrentHashMap<Role, String>();
@@ -24,6 +26,7 @@ public class AuthTokenProvider {
 	private AuthTokenProvider() {
 	}
 
+	@Step("Getting the Auth token for the role")
 	public static String getToken(Role role) {
 
 		LOGGER.info("Checking if the token for {} is present in the cache", role);
